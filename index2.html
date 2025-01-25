@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D 个人相册</title>
+  <style>
+    /* 全局样式 */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      perspective: 1000px;
+    }
+
+    /* 相册容器 */
+    .photo-album {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-gap: 30px;
+      max-width: 1200px;
+      width: 90%;
+    }
+
+    /* 单个图片项 */
+    .photo-item {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+
+    /* 图片正面 */
+    .photo-front,
+    .photo-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 图片正面样式 */
+    .photo-front {
+      background-color: #333;
+    }
+
+    /* 图片样式 */
+    .photo-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 图片背面样式 */
+    .photo-back {
+      background-color: #222;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: rotateY(180deg);
+    }
+
+    /* 悬停效果 */
+    .photo-item:hover {
+      transform: rotateY(180deg);
+    }
+
+    /* 图片淡入动画 */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 为图片项添加淡入动画 */
+    .photo-item {
+      animation: fadeIn 0.8s ease-out;
+    }
+  </style>
+</head>
+
+<body>
+<div class="photo-album">
+  <!-- 示例图片 1 -->
+  <div class="photo-item">
+    <div class="photo-front">
+      <img src="https://ts1.cn.mm.bing.net/th?id=OIP-C.IwLdYA0JjF7srTaxpEJ_zQHaEJ&w=333&h=187&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="Photo 1">
+    </div>
+    <div class="photo-back">
+      这是图片 1 的描述
+    </div>
+  </div>
+  <!-- 示例图片 2 -->
+  <div class="photo-item">
+    <div class="photo-front">
+      <img src="https://ts1.cn.mm.bing.net/th?id=OIP-C.IwLdYA0JjF7srTaxpEJ_zQHaEJ&w=333&h=187&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="Photo 2">
+    </div>
+    <div class="photo-back">
+      这是图片 2 的描述
+    </div>
+  </div>
+  <!-- 示例图片 3 -->
+  <div class="photo-item">
+    <div class="photo-front">
+      <img src="https://ts1.cn.mm.bing.net/th?id=OIP-C.IwLdYA0JjF7srTaxpEJ_zQHaEJ&w=333&h=187&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="Photo 3">
+    </div>
+    <div class="photo-back">
+      这是图片 3 的描述
+    </div>
+  </div>
+  <!-- 示例图片 4 -->
+  <div class="photo-item">
+    <div class="photo-front">
+      <img src="https://ts1.cn.mm.bing.net/th?id=OIP-C.IwLdYA0JjF7srTaxpEJ_zQHaEJ&w=333&h=187&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="Photo 4">
+    </div>
+    <div class="photo-back">
+      这是图片 4 的描述
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
