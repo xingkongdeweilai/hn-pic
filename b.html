@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>生日快乐我的宝贝</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            font-family: '楷体', cursive;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff3366, #ff6b6b);
+            overflow: hidden;
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.8);
+            animation: float 6s infinite linear;
+            font-size: 20px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .photo-frame {
+            width: 300px;
+            height: 400px;
+            margin: 20px auto;
+            border: 5px solid #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 51, 102, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .message {
+            color: white;
+            font-size: 24px;
+            margin: 20px;
+            line-height: 1.6;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .lyrics {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            color: white;
+            font-size: 18px;
+            opacity: 0;
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes scroll {
+            0% { opacity: 0; transform: translateY(100%); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-100%); }
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hearts" id="hearts"></div>
+
+    <div class="content">
+        <h1 style="color: #fff; font-size: 40px; margin: 20px;">❤ 生日快乐我的宝贝 ❤</h1>
+
+        <div class="photo-frame">
+            <img src="https://img-baofun.zhhainiao.com/pcwallpaper_ugc/static/d52fbc582bbc6998f1afdac4ddbbeb40.jpg?x-oss-process=image%2fresize%2cm_lfit%2cw_1920%2ch_1080" class="photo" alt="我们的照片">
+        </div>
+
+        <div class="message">
+            <p>给最爱的你：</p>
+            <p>遇见你是最美的意外，</p>
+            <p>陪伴你是最甜的时光，</p>
+            <p>愿每个生日我都陪在你身边，</p>
+            <p>爱你永远，生日快乐！</p>
+        </div>
+
+        <div class="lyrics">
+            ♫ 特别的爱给特别的你 ♫<br>
+            ♫ 你是我最重要的决定 ♫<br>
+            ♫ 生日快乐我的唯一 ♫
+        </div>
+    </div>
+
+    <div class="music-player">
+        <audio id="bgm" controls autoplay loop>
+            <source src="test.mp3" type="audio/mpeg">
+            您的浏览器不支持音频播放
+        </audio>
+    </div>
+</div>
+
+<script>
+    // 创建爱心雨
+    function createHearts() {
+        const heartsContainer = document.getElementById('hearts');
+        for (let i = 0; i < 50; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heartsContainer.appendChild(heart);
+        }
+    }
+
+    // 照片悬停效果
+    document.querySelector('.photo').addEventListener('mouseover', function() {
+        this.style.transform = 'scale(1.1)';
+    });
+
+    document.querySelector('.photo').addEventListener('mouseout', function() {
+        this.style.transform = 'scale(1)';
+    });
+
+    // 自动播放音乐
+    document.addEventListener('click', function() {
+        document.getElementById('bgm').play();
+    });
+
+    // 初始化
+    createHearts();
+</script>
+</body>
+</html>
