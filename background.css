@@ -1,0 +1,42 @@
+/* From Uiverse.io by SelfMadeSystem */
+/* The variation: the hexagonal lattice is rotated */
+.dark {
+    width: 100%;
+    height: 100%;
+    --s: 6em;
+    --d: 0.3em;
+    --bg: #232228;
+    --fg: rgb(90, 92, 102);
+    background-color: var(--bg);
+    background-image: radial-gradient(
+            var(--d) var(--d) at var(--d) var(--d),
+            var(--fg) 100%,
+            transparent 100%
+    ),
+    radial-gradient(
+            var(--d) var(--d) at calc(var(--d) + 33.3%) var(--d),
+            var(--fg) 100%,
+            transparent 100%
+    ),
+    radial-gradient(
+            var(--d) var(--d) at calc(var(--d) + 50%) calc(var(--d) + 50%),
+            var(--fg) 100%,
+            transparent 100%
+    ),
+    radial-gradient(
+            var(--d) var(--d) at calc(var(--d) + 83.3%) calc(var(--d) + 50%),
+            var(--fg) 100%,
+            transparent 100%
+    );
+    background-size: var(--s) calc(var(--s) * 0.577350269);
+}
+
+.day {
+    width: 100%;
+    height: 100%;
+    /* Add your background pattern here */
+    background-color: #ffffff;
+    background-image: radial-gradient(rgba(12, 12, 12, 0.171) 2px, transparent 0);
+    background-size: 30px 30px;
+    background-position: -5px -5px;
+}
