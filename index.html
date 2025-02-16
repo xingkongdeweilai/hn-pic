@@ -2,10 +2,11 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>炫酷个人相册</title>
+    <title>🎀小娜笔👗</title>
     <link rel="stylesheet" type="text/css" href="switch.css">
     <link rel="stylesheet" type="text/css" href="background.css">
     <link rel="stylesheet" type="text/css" href="pointer.css">
+    <link rel="stylesheet" type="text/css" href="danmu.css">
     <style>
         * {
             margin: 0;
@@ -17,6 +18,7 @@
             background: #1a1a1a;
             font-family: Arial, sans-serif;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .gallery {
@@ -90,6 +92,7 @@
 
         .close-btn:hover {
             background: rgba(255, 0, 0, 0.8);
+            transform: rotate(90deg) scale(1.1);
         }
 
         .nav-btn {
@@ -103,6 +106,7 @@
             padding: 10px 20px;
             border-radius: 5px;
             transition: 0.3s;
+            user-select: none;
         }
 
         .prev {
@@ -120,14 +124,24 @@
 </head>
 <body id="container" class="day">
 <div class="gallery">
-    <img src="https://ts1.cn.mm.bing.net/th?id=OIP-C.IwLdYA0JjF7srTaxpEJ_zQHaEJ&w=333&h=187&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" class="thumbnail" alt="照片1">
-    <img src="https://img-baofun.zhhainiao.com/pcwallpaper_ugc/static/388379538bf2af745f3f7cfea82816a2.jpg?x-oss-process=image%2fresize%2cm_lfit%2cw_3840%2ch_2160" class="thumbnail" alt="照片2">
-    <img src="https://img-baofun.zhhainiao.com/pcwallpaper_ugc_mobile/static/9b01b7b53a8df9abfade95a8c1186487.jpg?x-oss-process=image%2fresize%2cm_lfit%2cw_2560%2ch_1440" class="thumbnail" alt="照片3">
-    <img src="https://pic3.zhimg.com/v2-0087e364e1f120dfd9896d7331809793_r.jpg?source=1940ef5c" class="thumbnail" alt="照片4">
-    <img src="https://img-baofun.zhhainiao.com/pcwallpaper_ugc/static/d52fbc582bbc6998f1afdac4ddbbeb40.jpg?x-oss-process=image%2fresize%2cm_lfit%2cw_1920%2ch_1080" class="thumbnail" alt="照片5">
-    <img src="https://img-baofun.zhhainiao.com/fs/0f252f02cfa6171a208dca30cf838079.jpg" class="thumbnail" alt="照片6">
+    <img src="0.jpg" class="thumbnail" alt="照片0">
+    <img src="1.jpg" class="thumbnail" alt="照片1">
+    <img src="2.jpg" class="thumbnail" alt="照片2">
+    <img src="3.jpg" class="thumbnail" alt="照片3">
+    <img src="4.jpg" class="thumbnail" alt="照片4">
+    <img src="5.jpg" class="thumbnail" alt="照片5">
+    <img src="6.jpg" class="thumbnail" alt="照片6">
     <div class="thumbnail"><iframe class="pet" width="100%" height="100%" frameborder="0" src="https://cdn.abowman.com/widgets/hamster/hamster.html?up_bgColor=ffffff&up_bodyColor=e6debe&up_earColor=d4c898&up_snoutColor=f7f4e9&up_eyeColor=000000&up_feetColor=d4c898&up_tailColor=e6debe&up_waterColor=e0efff&up_foodColor=cba920&up_wheelColor=ffffff&up_wheelOuterColor=ff4d4d&up_wheelCenterColor=e4eb2f&up_wheelSpokeColor=dedede"></iframe></div>
+    <img src="7.jpg" class="thumbnail" alt="照片7">
+    <img src="8.jpg" class="thumbnail" alt="照片8">
+    <img src="9.jpg" class="thumbnail" alt="照片9">
+    <img src="10.jpg" class="thumbnail" alt="照片10">
+    <img src="11.jpg" class="thumbnail" alt="照片11">
+    <img src="12.jpg" class="thumbnail" alt="照片12">
+    <img src="13.jpg" class="thumbnail" alt="照片13">
 </div>
+
+<div id="danmu"></div>
 
 <div class="modal">
     <span class="close-btn">&times;</span>
@@ -175,6 +189,14 @@
 </div>
 
 <script>
+    loopy()
+    function loopy() {
+        let sWord = ""
+        while (sWord !== "20241025") {//设置密码
+            sWord = prompt("输入正确密码才能访问!")
+        }
+    }
+
     const modal = document.querySelector('.modal');
     const modalImg = document.querySelector('.modal-img');
     const thumbnails = document.querySelectorAll('.thumbnail');
@@ -208,7 +230,14 @@
     });
 
     // 切换图片
-    function showImage(index) {
+    function showImage(index, isNext) {
+        if (index === 7) {
+            if (isNext) {
+                index = 8;
+            } else {
+                index = 6;
+            }
+        }
         thumbnails[index].scrollIntoView({ behavior: 'smooth' });
         modalImg.src = thumbnails[index].src.replace('thumbnail', 'fullsize');
         currentIndex = index;
@@ -217,13 +246,13 @@
     // 上一张
     prevBtn.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
-        showImage(currentIndex);
+        showImage(currentIndex, false);
     });
 
     // 下一张
     nextBtn.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % thumbnails.length;
-        showImage(currentIndex);
+        showImage(currentIndex, true);
     });
 
     // 键盘控制
@@ -246,6 +275,130 @@
         }
         isDarkMode = !isDarkMode;
     });
+
+    // 弹幕
+    const danmu = document.getElementById('danmu');
+    const danmus = [];
+    const myDanmus = ['为你打call'
+        , '小何娜'
+        , '地表最美'
+        , '🎀小娜笔👗'
+        , '😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍'
+    ];
+    const trackHeight = 30; // 弹道高度
+    let tracks = [];
+
+    // 初始化弹道
+    function initTracks() {
+        const trackCount = Math.floor(container.clientHeight / trackHeight);
+        tracks = new Array(trackCount).fill(true);
+    }
+
+    // 获取随机颜色
+    function getRandomColor() {
+        return `hsl(${Math.random() * 360}, 100%, 50%)`;
+    }
+
+    // 创建弹幕元素
+    function createDanmu(text) {
+        const danmu = document.createElement('div');
+        danmu.className = 'danmu';
+        danmu.textContent = text;
+        danmu.style.color = getRandomColor();
+        return danmu;
+    }
+
+    // 寻找可用弹道
+    function findAvailableTrack() {
+        for(let i = 0; i < tracks.length; i++) {
+            if(tracks[i]) {
+                tracks[i] = false;
+                return i;
+            }
+        }
+        return Math.floor(Math.random() * tracks.length);
+    }
+
+    // 弹幕动画
+    function animateDanmu(danmuObj) {
+        const startTime = Date.now();
+        const duration = 5000 + Math.random() * 3000; // 随机持续时间
+
+        function update() {
+            const elapsed = Date.now() - startTime;
+            const progress = elapsed / duration;
+
+            if(progress < 1) {
+                const x = container.clientWidth * (1 - progress);
+                danmuObj.element.style.transform = `translateX(${x}px)`;
+                requestAnimationFrame(update);
+            } else {
+                // 移除弹幕并释放弹道
+                danmuObj.element.remove();
+                tracks[danmuObj.track] = true;
+                const index = danmus.indexOf(danmuObj);
+                if(index > -1) danmus.splice(index, 1);
+            }
+        }
+
+        requestAnimationFrame(update);
+    }
+
+    // 发送弹幕
+    function sendDanmu(text) {
+        const danmu = createDanmu(text);
+        const track = findAvailableTrack();
+
+        // 设置初始位置
+        danmu.style.top = `${track * trackHeight}px`;
+        danmu.style.transform = `translateX(${container.clientWidth}px)`;
+
+        container.appendChild(danmu);
+        const danmuObj = { element: danmu, track };
+        danmus.push(danmuObj);
+        animateDanmu(danmuObj);
+    }
+
+    // 窗口大小变化处理
+    window.addEventListener('resize', () => {
+        initTracks();
+        danmus.forEach(danmu => {
+            danmu.element.style.transform = `translateX(${container.clientWidth}px)`;
+        });
+    });
+
+    // 初始化
+    initTracks();
+    setInterval(() => sendDanmu(myDanmus[Math.floor(Math.random()*100)%myDanmus.length]), 200);
+
+    document.onkeydown = function(e) {
+        console.log(e);
+        if(e.key === 'F12') {
+            alert("F12审查元素已被禁用！");
+            return false;
+        }
+        if(e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I')) {
+            alert("F12审查元素已被禁用！");
+            return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.key === 'c' || e.key === 'C') {
+            alert("F12审查元素已被禁用！");
+            return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.key === 'j' || e.key === 'J') {
+            alert("F12审查元素已被禁用！");
+            return false;
+        }
+        if(e.ctrlKey && e.key === 'u' || e.key === 'U') {
+            alert("查看源代码已被禁用！");
+            return false;
+        }
+    }
+
+    // 禁用右键
+    document.addEventListener('contextmenu', function (event) {
+        event.preventDefault()
+    })
 </script>
 </body>
 </html>
