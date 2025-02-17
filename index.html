@@ -8,6 +8,81 @@
     <link rel="stylesheet" type="text/css" href="pointer.css">
     <link rel="stylesheet" type="text/css" href="danmu.css">
     <style>
+        /* 初始隐藏页面内容 */
+        #content {
+            display: none;
+        }
+
+        /* 全屏遮罩层 */
+        #authDialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .dialog-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 320px;
+        }
+
+        .error-msg {
+            color: #dc3545;
+            height: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* 自定义对话框样式 */
+        dialog {
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            width: 300px;
+            padding: 20px;
+        }
+
+        .password-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .confirm-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #6c757d;
+            color: white;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -123,79 +198,141 @@
     </style>
 </head>
 <body id="container" class="day">
-<div class="gallery">
-    <img src="https://s21.ax1x.com/2025/02/17/pEKzzSx.jpg" class="thumbnail" alt="照片0">
-    <img src="https://s21.ax1x.com/2025/02/17/pEKzvf1.jpg" class="thumbnail" alt="照片1">
-    <img src="https://s21.ax1x.com/2025/02/17/pEKzjYR.jpg" class="thumbnail" alt="照片2">
-    <img src="https://s21.ax1x.com/2025/02/17/pEKzXk9.jpg" class="thumbnail" alt="照片3">
-    <img src="https://s21.ax1x.com/2025/02/17/pEKzLTJ.jpg" class="thumbnail" alt="照片4">
-    <img src="https://s21.ax1x.com/2025/02/17/pEKzqw4.jpg" class="thumbnail" alt="照片5">
-    <img src="https://s21.ax1x.com/2025/02/17/pEKzbmF.jpg" class="thumbnail" alt="照片6">
-    <div class="thumbnail"><iframe class="pet" width="100%" height="100%" frameborder="0" src="https://cdn.abowman.com/widgets/hamster/hamster.html?up_bgColor=ffffff&up_bodyColor=e6debe&up_earColor=d4c898&up_snoutColor=f7f4e9&up_eyeColor=000000&up_feetColor=d4c898&up_tailColor=e6debe&up_waterColor=e0efff&up_foodColor=cba920&up_wheelColor=ffffff&up_wheelOuterColor=ff4d4d&up_wheelCenterColor=e4eb2f&up_wheelSpokeColor=dedede"></iframe></div>
-    <img src="https://s21.ax1x.com/2025/02/17/pEKz7OU.jpg" class="thumbnail" alt="照片7">
-    <img src="http://srs8uqc52.hn-bkt.clouddn.com/8.jpg" class="thumbnail" alt="照片8">
-    <img src="http://srs8uqc52.hn-bkt.clouddn.com/9.jpg" class="thumbnail" alt="照片9">
-    <img src="http://srs8uqc52.hn-bkt.clouddn.com/10.jpg" class="thumbnail" alt="照片10">
-    <img src="http://srs8uqc52.hn-bkt.clouddn.com/11.jpg" class="thumbnail" alt="照片11">
-    <img src="http://srs8uqc52.hn-bkt.clouddn.com/12.jpg" class="thumbnail" alt="照片12">
-    <img src="http://srs8uqc52.hn-bkt.clouddn.com/13.jpg" class="thumbnail" alt="照片13">
-</div>
-
-<div id="danmu"></div>
-
-<div class="modal">
-    <span class="close-btn">&times;</span>
-    <div class="modal-content">
-        <img src="" class="modal-img" alt="大图">
+<!-- 密码验证容器 -->
+<div id="authDialog">
+    <div class="dialog-box">
+        <h2>🔒 安全验证</h2>
+        <form id="passwordForm" onsubmit="return validatePassword(event)">
+            <input type="password"
+                   id="passwordInput"
+                   placeholder="请输入访问密码"
+                   autocomplete="off"
+                   required
+                   class="input-field">
+            <div id="errorMsg" class="error-msg"></div>
+            <div class="button-group">
+                <button type="submit" class="submit-btn">验证</button>
+            </div>
+        </form>
     </div>
-    <div class="nav-btn prev">❮</div>
-    <div class="nav-btn next">❯</div>
 </div>
 
-<div class="switch">
-    <label class="bb8-toggle">
-        <input class="bb8-toggle__checkbox" type="checkbox">
-        <div class="bb8-toggle__container">
-            <div class="bb8-toggle__scenery">
-                <div class="bb8-toggle__star"></div>
-                <div class="bb8-toggle__star"></div>
-                <div class="bb8-toggle__star"></div>
-                <div class="bb8-toggle__star"></div>
-                <div class="bb8-toggle__star"></div>
-                <div class="bb8-toggle__star"></div>
-                <div class="bb8-toggle__star"></div>
-                <div class="tatto-1"></div>
-                <div class="tatto-2"></div>
-                <div class="gomrassen"></div>
-                <div class="hermes"></div>
-                <div class="chenini"></div>
-                <div class="bb8-toggle__cloud"></div>
-                <div class="bb8-toggle__cloud"></div>
-                <div class="bb8-toggle__cloud"></div>
-            </div>
-            <div class="bb8">
-                <div class="bb8__head-container">
-                    <div class="bb8__antenna"></div>
-                    <div class="bb8__antenna"></div>
-                    <div class="bb8__head"></div>
-                </div>
-                <div class="bb8__body"></div>
-            </div>
-            <div class="artificial__hidden">
-                <div class="bb8__shadow"></div>
-            </div>
+<div id="content">
+    <div class="gallery">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzzSx.jpg" class="thumbnail" alt="照片0">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzvf1.jpg" class="thumbnail" alt="照片1">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzjYR.jpg" class="thumbnail" alt="照片2">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzXk9.jpg" class="thumbnail" alt="照片3">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzLTJ.jpg" class="thumbnail" alt="照片4">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzqw4.jpg" class="thumbnail" alt="照片5">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzbmF.jpg" class="thumbnail" alt="照片6">
+        <div class="thumbnail"><iframe class="pet" width="100%" height="100%" frameborder="0" src="https://cdn.abowman.com/widgets/hamster/hamster.html?up_bgColor=ffffff&up_bodyColor=e6debe&up_earColor=d4c898&up_snoutColor=f7f4e9&up_eyeColor=000000&up_feetColor=d4c898&up_tailColor=e6debe&up_waterColor=e0efff&up_foodColor=cba920&up_wheelColor=ffffff&up_wheelOuterColor=ff4d4d&up_wheelCenterColor=e4eb2f&up_wheelSpokeColor=dedede"></iframe></div>
+        <img src="https://s21.ax1x.com/2025/02/17/pEKz7OU.jpg" class="thumbnail" alt="照片7">
+        <img src="https://s21.ax1x.com/2025/02/17/pEMmzLj.jpg" class="thumbnail" alt="照片8">
+        <img src="https://s21.ax1x.com/2025/02/17/pEMmxyQ.jpg" class="thumbnail" alt="照片9">
+        <img src="https://s21.ax1x.com/2025/02/17/pEMnpes.jpg" class="thumbnail" alt="照片10">
+        <img src="https://s21.ax1x.com/2025/02/17/pEMnCoq.jpg" class="thumbnail" alt="照片11">
+        <img src="https://s21.ax1x.com/2025/02/17/pEMn9wn.jpg" class="thumbnail" alt="照片12">
+        <img src="https://s21.ax1x.com/2025/02/17/pEMniF0.jpg" class="thumbnail" alt="照片13">
+    </div>
+
+    <div id="danmu"></div>
+
+    <div class="modal">
+        <span class="close-btn">&times;</span>
+        <div class="modal-content">
+            <img src="" class="modal-img" alt="大图">
         </div>
-    </label>
+        <div class="nav-btn prev">❮</div>
+        <div class="nav-btn next">❯</div>
+    </div>
+
+    <div class="switch">
+        <label class="bb8-toggle">
+            <input class="bb8-toggle__checkbox" type="checkbox">
+            <div class="bb8-toggle__container">
+                <div class="bb8-toggle__scenery">
+                    <div class="bb8-toggle__star"></div>
+                    <div class="bb8-toggle__star"></div>
+                    <div class="bb8-toggle__star"></div>
+                    <div class="bb8-toggle__star"></div>
+                    <div class="bb8-toggle__star"></div>
+                    <div class="bb8-toggle__star"></div>
+                    <div class="bb8-toggle__star"></div>
+                    <div class="tatto-1"></div>
+                    <div class="tatto-2"></div>
+                    <div class="gomrassen"></div>
+                    <div class="hermes"></div>
+                    <div class="chenini"></div>
+                    <div class="bb8-toggle__cloud"></div>
+                    <div class="bb8-toggle__cloud"></div>
+                    <div class="bb8-toggle__cloud"></div>
+                </div>
+                <div class="bb8">
+                    <div class="bb8__head-container">
+                        <div class="bb8__antenna"></div>
+                        <div class="bb8__antenna"></div>
+                        <div class="bb8__head"></div>
+                    </div>
+                    <div class="bb8__body"></div>
+                </div>
+                <div class="artificial__hidden">
+                    <div class="bb8__shadow"></div>
+                </div>
+            </div>
+        </label>
+    </div>
 </div>
 
 <script>
-    loopy()
-    function loopy() {
-        let sWord = ""
-        while (sWord !== "20241025") {//设置密码
-            sWord = prompt("输入正确密码才能访问!")
+    // 硬编码示例密码（正式环境应使用后端验证）
+    const CORRECT_PASSWORD = '20241025';
+    let danmuReady = false;
+    // 密码验证逻辑
+    function validatePassword(e) {
+        e.preventDefault();
+        const input = document.getElementById('passwordInput');
+        const errorMsg = document.getElementById('errorMsg');
+
+        if (input.value === CORRECT_PASSWORD) {
+            // 验证成功显示内容
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('authDialog').style.display = 'none';
+            danmuReady = true;
+        } else {
+            // 验证失败处理
+            errorMsg.textContent = '密码错误，请重新输入';
+            input.value = '';
+            input.focus();
         }
     }
+
+    // 控制台打开监听模块
+    (function(){
+        // 方法1：控制台尺寸变化检测
+        let baselineHeight = window.innerHeight;
+        window.addEventListener('resize', () => {
+            if (window.innerHeight < baselineHeight * 0.8) { // 高度减少超过20%
+                handleConsoleOpen();
+            }
+        });
+
+        // 方法2：调试器检测
+        const debugDetector = () => {
+            const start = Date.now();
+            if (Date.now() - start > 200) { // 调试模式下会在此处暂停
+                handleConsoleOpen();
+            }
+        };
+        setInterval(debugDetector, 5000);
+
+        // 违规处理函数
+        function handleConsoleOpen() {
+            document.body.innerHTML = `<h1 style="color:red">安全违规：检测到开发者工具已开启</h1>`;
+            window.localStorage.clear();
+            setTimeout(() => { window.location.replace("about:blank"); }, 2000);
+        }
+    })();
 
     const modal = document.querySelector('.modal');
     const modalImg = document.querySelector('.modal-img');
@@ -346,17 +483,19 @@
 
     // 发送弹幕
     function sendDanmu(text) {
-        const danmu = createDanmu(text);
-        const track = findAvailableTrack();
+        if (danmuReady) {
+            const danmu = createDanmu(text);
+            const track = findAvailableTrack();
 
-        // 设置初始位置
-        danmu.style.top = `${track * trackHeight}px`;
-        danmu.style.transform = `translateX(${container.clientWidth}px)`;
+            // 设置初始位置
+            danmu.style.top = `${track * trackHeight}px`;
+            danmu.style.transform = `translateX(${container.clientWidth}px)`;
 
-        container.appendChild(danmu);
-        const danmuObj = { element: danmu, track };
-        danmus.push(danmuObj);
-        animateDanmu(danmuObj);
+            container.appendChild(danmu);
+            const danmuObj = { element: danmu, track };
+            danmus.push(danmuObj);
+            animateDanmu(danmuObj);
+        }
     }
 
     // 窗口大小变化处理
