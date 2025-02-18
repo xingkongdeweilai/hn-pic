@@ -1,0 +1,59 @@
+.playContainer {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
+    height: 5.625em;
+    width: 5.625em;
+    animation: rotate_3922 1.2s linear infinite;
+    background-color: #9b59b6;
+    background-image: linear-gradient(#9b59b6, #84cdfa, #5ad1cd);
+    cursor: pointer;
+}
+
+.playContainer span {
+    position: absolute;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    background-color: #9b59b6;
+    background-image: linear-gradient(#9b59b6, #84cdfa, #5ad1cd);
+}
+
+.playContainer span:nth-of-type(1) {
+    filter: blur(5px);
+}
+
+.playContainer span:nth-of-type(2) {
+    filter: blur(10px);
+}
+
+.playContainer span:nth-of-type(3) {
+    filter: blur(25px);
+}
+
+.playContainer span:nth-of-type(4) {
+    filter: blur(50px);
+}
+
+.playContainer::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    background-color: #fff;
+    border: solid 5px #ffffff;
+    border-radius: 50%;
+}
+
+@keyframes rotate_3922 {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

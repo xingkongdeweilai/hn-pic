@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="background.css">
     <link rel="stylesheet" type="text/css" href="pointer.css">
     <link rel="stylesheet" type="text/css" href="danmu.css">
+    <link rel="stylesheet" type="text/css" href="audio.css">
     <style>
         /* 初始隐藏页面内容 */
         #content {
@@ -224,21 +225,21 @@
 
 <div id="content">
     <div class="gallery">
-        <img src="https://s21.ax1x.com/2025/02/17/pEKzzSx.jpg" class="thumbnail" alt="照片0">
-        <img src="https://s21.ax1x.com/2025/02/17/pEKzvf1.jpg" class="thumbnail" alt="照片1">
-        <img src="https://s21.ax1x.com/2025/02/17/pEKzjYR.jpg" class="thumbnail" alt="照片2">
-        <img src="https://s21.ax1x.com/2025/02/17/pEKzXk9.jpg" class="thumbnail" alt="照片3">
-        <img src="https://s21.ax1x.com/2025/02/17/pEKzLTJ.jpg" class="thumbnail" alt="照片4">
-        <img src="https://s21.ax1x.com/2025/02/17/pEKzqw4.jpg" class="thumbnail" alt="照片5">
-        <img src="https://s21.ax1x.com/2025/02/17/pEKzbmF.jpg" class="thumbnail" alt="照片6">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzzSx.jpg" class="thumbnail" alt="照片0" draggable="false">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzvf1.jpg" class="thumbnail" alt="照片1" draggable="false">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzjYR.jpg" class="thumbnail" alt="照片2" draggable="false">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzXk9.jpg" class="thumbnail" alt="照片3" draggable="false">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzLTJ.jpg" class="thumbnail" alt="照片4" draggable="false">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzqw4.jpg" class="thumbnail" alt="照片5" draggable="false">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKzbmF.jpg" class="thumbnail" alt="照片6" draggable="false">
         <div class="thumbnail"><iframe class="pet" width="100%" height="100%" frameborder="0" src="https://cdn.abowman.com/widgets/hamster/hamster.html?up_bgColor=ffffff&up_bodyColor=e6debe&up_earColor=d4c898&up_snoutColor=f7f4e9&up_eyeColor=000000&up_feetColor=d4c898&up_tailColor=e6debe&up_waterColor=e0efff&up_foodColor=cba920&up_wheelColor=ffffff&up_wheelOuterColor=ff4d4d&up_wheelCenterColor=e4eb2f&up_wheelSpokeColor=dedede"></iframe></div>
-        <img src="https://s21.ax1x.com/2025/02/17/pEKz7OU.jpg" class="thumbnail" alt="照片7">
-        <img src="https://s21.ax1x.com/2025/02/17/pEMmzLj.jpg" class="thumbnail" alt="照片8">
-        <img src="https://s21.ax1x.com/2025/02/17/pEMmxyQ.jpg" class="thumbnail" alt="照片9">
-        <img src="https://s21.ax1x.com/2025/02/17/pEMnpes.jpg" class="thumbnail" alt="照片10">
-        <img src="https://s21.ax1x.com/2025/02/17/pEMnCoq.jpg" class="thumbnail" alt="照片11">
-        <img src="https://s21.ax1x.com/2025/02/17/pEMn9wn.jpg" class="thumbnail" alt="照片12">
-        <img src="https://s21.ax1x.com/2025/02/17/pEMniF0.jpg" class="thumbnail" alt="照片13">
+        <img src="https://s21.ax1x.com/2025/02/17/pEKz7OU.jpg" class="thumbnail" alt="照片7" draggable="false">
+        <img src="https://s21.ax1x.com/2025/02/17/pEMmzLj.jpg" class="thumbnail" alt="照片8" draggable="false">
+        <img src="https://s21.ax1x.com/2025/02/17/pEMmxyQ.jpg" class="thumbnail" alt="照片9" draggable="false">
+        <img src="https://s21.ax1x.com/2025/02/17/pEMnpes.jpg" class="thumbnail" alt="照片10" draggable="false">
+        <img src="https://s21.ax1x.com/2025/02/17/pEMnCoq.jpg" class="thumbnail" alt="照片11" draggable="false">
+        <img src="https://s21.ax1x.com/2025/02/17/pEMn9wn.jpg" class="thumbnail" alt="照片12" draggable="false">
+        <img src="https://s21.ax1x.com/2025/02/17/pEMniF0.jpg" class="thumbnail" alt="照片13" draggable="false">
     </div>
 
     <div id="danmu"></div>
@@ -246,7 +247,7 @@
     <div class="modal">
         <span class="close-btn">&times;</span>
         <div class="modal-content">
-            <img src="" class="modal-img" alt="大图">
+            <img src="" class="modal-img" alt="大图" draggable="false">
         </div>
         <div class="nav-btn prev">❮</div>
         <div class="nav-btn next">❯</div>
@@ -287,6 +288,15 @@
             </div>
         </label>
     </div>
+
+    <div id="audioBox"></div>
+
+    <div id="play" class="playContainer">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 </div>
 
 <script>
@@ -311,33 +321,6 @@
             input.focus();
         }
     }
-
-    // 控制台打开监听模块
-    (function(){
-        // 方法1：控制台尺寸变化检测
-        let baselineHeight = window.innerHeight;
-        window.addEventListener('resize', () => {
-            if (window.innerHeight < baselineHeight * 0.8) { // 高度减少超过20%
-                handleConsoleOpen();
-            }
-        });
-
-        // 方法2：调试器检测
-        const debugDetector = () => {
-            const start = Date.now();
-            if (Date.now() - start > 200) { // 调试模式下会在此处暂停
-                handleConsoleOpen();
-            }
-        };
-        setInterval(debugDetector, 5000);
-
-        // 违规处理函数
-        function handleConsoleOpen() {
-            document.body.innerHTML = `<h1 style="color:red">安全违规：检测到开发者工具已开启</h1>`;
-            window.localStorage.clear();
-            setTimeout(() => { window.location.replace("about:blank"); }, 2000);
-        }
-    })();
 
     const modal = document.querySelector('.modal');
     const modalImg = document.querySelector('.modal-img');
@@ -428,7 +411,8 @@
         , '😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍'
         , '这周不加班！！！'
         , '宅'
-        , '我不想出去玩'
+        , '不想出去玩'
+        , '不想喝奶茶'
     ];
     const trackHeight = 30; // 弹道高度
     let tracks = [];
@@ -467,7 +451,7 @@
     // 弹幕动画
     function animateDanmu(danmuObj) {
         const startTime = Date.now();
-        const duration = 5000 + Math.random() * 3000; // 随机持续时间
+        const duration = 6666 + Math.random() * 3000; // 随机持续时间
 
         function update() {
             const elapsed = Date.now() - startTime;
@@ -546,6 +530,38 @@
     document.addEventListener('contextmenu', function (event) {
         event.preventDefault()
     })
+
+    const arr = ["https://dlink.host/musics/aHR0cHM6Ly9vbmVkcnYtbXkuc2hhcmVwb2ludC5jb20vOnU6L2cvcGVyc29uYWwvc3Rvcl9vbmVkcnZfb25taWNyb3NvZnRfY29tL0VTRVRkNmZHZTdKR2hVQklPcEhpQlRBQjhHNTIyWEdxaGVYZk9uVndTT19DbUE.mp3"
+        , "https://dlink.host/musics/aHR0cHM6Ly9vbmVkcnYtbXkuc2hhcmVwb2ludC5jb20vOnU6L2cvcGVyc29uYWwvc3Rvcl9vbmVkcnZfb25taWNyb3NvZnRfY29tL0VmT1A0Vy1JZldoQ21DTFg2OTVUb01vQlFuaEdQZEpJX3lURzJQaGNqb05aMVE.mp3"
+        , "https://dlink.host/musics/aHR0cHM6Ly9vbmVkcnYtbXkuc2hhcmVwb2ludC5jb20vOnU6L2cvcGVyc29uYWwvc3Rvcl9vbmVkcnZfb25taWNyb3NvZnRfY29tL0VkbWE4OWNFOHRKTGhmdHdjc1NpcTBzQkVRd3JtcG9sOVhIN1FPUU5qc1QxSXc.mp3"
+    ];
+    const play = document.getElementById('play');
+    const myAudio = new Audio();
+    const playContainer = document.querySelector('.playContainer');
+    window.onload = function(){
+        myAudio.src = arr[Math.floor(Math.random()*100)%arr.length];
+        myAudio.addEventListener('ended', playEndedHandler, false);
+        myAudio.play();
+        document.getElementById("audioBox").appendChild(myAudio);
+        function playEndedHandler(){
+            myAudio.src = arr[Math.floor(Math.random()*100)%arr.length];
+            myAudio.play();
+        }
+        if (myAudio.paused) {
+            playContainer.style.animationPlayState = 'paused';
+        } else {
+            playContainer.style.animationPlayState = '';
+        }
+    }
+    play.addEventListener('click', () => {
+        if (myAudio.paused) {
+            myAudio.play();
+            playContainer.style.animationPlayState = '';
+        } else {
+            myAudio.pause();
+            playContainer.style.animationPlayState = 'paused';
+        }
+    });
 </script>
 </body>
 </html>
