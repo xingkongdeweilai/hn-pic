@@ -200,6 +200,66 @@
         .nav-btn:hover {
             background: rgba(0, 255, 255, 0.5);
         }
+
+        /* 添加新的动画样式 */
+        .fade-out-left {
+            animation: fadeOutLeft 0.3s ease forwards;
+        }
+        .fade-out-right {
+            animation: fadeOutRight 0.3s ease forwards;
+        }
+
+        .fade-in-left {
+            animation: fadeInLeft 0.3s ease forwards;
+        }
+
+        .fade-in-right {
+            animation: fadeInRight 0.3s ease forwards;
+        }
+
+        @keyframes fadeOutLeft {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0.5;
+                transform: translateX(-30px);
+            }
+        }
+
+        @keyframes fadeOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0.5;
+                transform: translateX(30px);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0.5;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0.5;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 <body id="container" class="dark">
@@ -328,7 +388,7 @@
     const switchBtn = document.querySelector('.bb8-toggle__checkbox');
     const container = document.querySelector('#container');
     let currentIndex = 0;
-    let isDarkMode = false;
+    let isDarkMode = true;
 
     // 打开模态框
     thumbnails.forEach((thumbnail, index) => {
@@ -351,18 +411,38 @@
         }
     });
 
-    // 切换图片
+    // 修改showImage函数以支持动画效果
     function showImage(index, isNext) {
-        if (index === 7) {
-            if (isNext) {
-                index = 8;
-            } else {
-                index = 6;
-            }
+        // 先移除所有动画类，确保每次切换都能应用新动画
+        modalImg.classList.remove('fade-out-left', 'fade-out-right', 'fade-in-left', 'fade-in-right');
+
+        // 先让当前图片消失
+        if (isNext) {
+            modalImg.classList.add('fade-out-left');
+        } else {
+            modalImg.classList.add('fade-out-right');
         }
-        thumbnails[index].scrollIntoView({ behavior: 'smooth' });
-        modalImg.src = thumbnails[index].src.replace('thumbnail', 'fullsize');
-        currentIndex = index;
+
+        // 等待动画结束后切换图片
+        setTimeout(() => {
+            if (index === 7) {
+                if (isNext) {
+                    index = 8;
+                } else {
+                    index = 6;
+                }
+            }
+            thumbnails[index].scrollIntoView({ behavior: 'smooth' });
+            modalImg.src = thumbnails[index].src.replace('thumbnail', 'fullsize');
+            currentIndex = index;
+
+            // 根据切换方向应用新的动画
+            if (isNext) {
+                modalImg.classList.add('fade-in-left');
+            } else {
+                modalImg.classList.add('fade-in-right');
+            }
+        }, 300); // 300ms是动画持续时间
     }
 
     // 上一张
