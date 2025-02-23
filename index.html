@@ -605,29 +605,29 @@
     initTracks();
     setInterval(() => sendDanmu(myDanmus[Math.floor(Math.random()*100)%myDanmus.length]), 200);
 
-    // document.onkeydown = function(e) {
-    //     console.log(e);
-    //     if(e.key === 'F12') {
-    //         alert("F12审查元素已被禁用！");
-    //         return false;
-    //     }
-    //     if(e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I')) {
-    //         alert("F12审查元素已被禁用！");
-    //         return false;
-    //     }
-    //     if(e.ctrlKey && e.shiftKey && e.key === 'c' || e.key === 'C') {
-    //         alert("F12审查元素已被禁用！");
-    //         return false;
-    //     }
-    //     if(e.ctrlKey && e.shiftKey && e.key === 'j' || e.key === 'J') {
-    //         alert("F12审查元素已被禁用！");
-    //         return false;
-    //     }
-    //     if(e.ctrlKey && e.key === 'u' || e.key === 'U') {
-    //         alert("查看源代码已被禁用！");
-    //         return false;
-    //     }
-    // }
+    document.onkeydown = function(e) {
+        console.log(e);
+        if(e.key === 'F12') {
+            alert("F12审查元素已被禁用！");
+            return false;
+        }
+        if(e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I')) {
+            alert("F12审查元素已被禁用！");
+            return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.key === 'c' || e.key === 'C') {
+            alert("F12审查元素已被禁用！");
+            return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.key === 'j' || e.key === 'J') {
+            alert("F12审查元素已被禁用！");
+            return false;
+        }
+        if(e.ctrlKey && e.key === 'u' || e.key === 'U') {
+            alert("查看源代码已被禁用！");
+            return false;
+        }
+    }
 
     // 禁用右键
     document.addEventListener('contextmenu', function (event) {
