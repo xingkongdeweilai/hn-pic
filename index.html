@@ -16,6 +16,8 @@
         /* 初始隐藏页面内容 */
         #content {
             display: none;
+            filter: blur(10px); /* 初始模糊效果 */
+            transition: filter 2s ease; /* 过渡动画 */
         }
 
         /* 全屏遮罩层 */
@@ -372,6 +374,11 @@
             document.getElementById('content').style.display = 'block';
             document.getElementById('authDialog').style.display = 'none';
             danmuReady = true;
+
+            // 触发过渡动画
+            setTimeout(() => {
+                content.style.filter = 'blur(0)';
+            }, 100); // 延迟100ms以确保样式应用
         } else {
             // 验证失败处理
             errorMsg.textContent = '密码错误，请重新输入';
