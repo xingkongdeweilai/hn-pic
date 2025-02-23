@@ -603,7 +603,7 @@
 
     // 初始化
     initTracks();
-    setInterval(() => sendDanmu(myDanmus[Math.floor(Math.random()*100)%myDanmus.length]), 200);
+    setInterval(() => sendDanmu(myDanmus[Math.floor(Math.random()*myDanmus.length)]), 200);
 
     document.onkeydown = function(e) {
         console.log(e);
