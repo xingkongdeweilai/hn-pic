@@ -263,6 +263,10 @@
                 transform: translateX(0);
             }
         }
+
+        .extra {
+            display: none;
+        }
     </style>
 </head>
 <body id="container" class="dark">
@@ -316,47 +320,47 @@
         <div class="nav-btn next">❯</div>
     </div>
 
-    <div class="switch">
-        <label class="bb8-toggle">
-            <input class="bb8-toggle__checkbox" type="checkbox">
-            <div class="bb8-toggle__container">
-                <div class="bb8-toggle__scenery">
-                    <div class="bb8-toggle__star"></div>
-                    <div class="bb8-toggle__star"></div>
-                    <div class="bb8-toggle__star"></div>
-                    <div class="bb8-toggle__star"></div>
-                    <div class="bb8-toggle__star"></div>
-                    <div class="bb8-toggle__star"></div>
-                    <div class="bb8-toggle__star"></div>
-                    <div class="tatto-1"></div>
-                    <div class="tatto-2"></div>
-                    <div class="gomrassen"></div>
-                    <div class="hermes"></div>
-                    <div class="chenini"></div>
-                    <div class="bb8-toggle__cloud"></div>
-                    <div class="bb8-toggle__cloud"></div>
-                    <div class="bb8-toggle__cloud"></div>
-                </div>
-                <div class="bb8">
-                    <div class="bb8__head-container">
-                        <div class="bb8__antenna"></div>
-                        <div class="bb8__antenna"></div>
-                        <div class="bb8__head"></div>
-                    </div>
-                    <div class="bb8__body"></div>
-                </div>
-                <div class="artificial__hidden">
-                    <div class="bb8__shadow"></div>
-                </div>
-            </div>
-        </label>
-    </div>
-
     <div id="audioBox"></div>
+</div>
 
-    <div id="play" class="playContainer">
-        <div class="spinnerin"></div>
-    </div>
+<div class="switch extra">
+    <label class="bb8-toggle">
+        <input class="bb8-toggle__checkbox" type="checkbox">
+        <div class="bb8-toggle__container">
+            <div class="bb8-toggle__scenery">
+                <div class="bb8-toggle__star"></div>
+                <div class="bb8-toggle__star"></div>
+                <div class="bb8-toggle__star"></div>
+                <div class="bb8-toggle__star"></div>
+                <div class="bb8-toggle__star"></div>
+                <div class="bb8-toggle__star"></div>
+                <div class="bb8-toggle__star"></div>
+                <div class="tatto-1"></div>
+                <div class="tatto-2"></div>
+                <div class="gomrassen"></div>
+                <div class="hermes"></div>
+                <div class="chenini"></div>
+                <div class="bb8-toggle__cloud"></div>
+                <div class="bb8-toggle__cloud"></div>
+                <div class="bb8-toggle__cloud"></div>
+            </div>
+            <div class="bb8">
+                <div class="bb8__head-container">
+                    <div class="bb8__antenna"></div>
+                    <div class="bb8__antenna"></div>
+                    <div class="bb8__head"></div>
+                </div>
+                <div class="bb8__body"></div>
+            </div>
+            <div class="artificial__hidden">
+                <div class="bb8__shadow"></div>
+            </div>
+        </div>
+    </label>
+</div>
+
+<div id="play" class="playContainer extra">
+    <div class="spinnerin"></div>
 </div>
 
 <script>
@@ -373,6 +377,9 @@
             // 验证成功显示内容
             document.getElementById('content').style.display = 'block';
             document.getElementById('authDialog').style.display = 'none';
+            document.querySelectorAll('.extra').forEach((item) => {
+                item.classList.remove('extra');
+            })
             danmuReady = true;
 
             // 触发过渡动画
@@ -588,29 +595,29 @@
     initTracks();
     setInterval(() => sendDanmu(myDanmus[Math.floor(Math.random()*100)%myDanmus.length]), 200);
 
-    document.onkeydown = function(e) {
-        console.log(e);
-        if(e.key === 'F12') {
-            alert("F12审查元素已被禁用！");
-            return false;
-        }
-        if(e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I')) {
-            alert("F12审查元素已被禁用！");
-            return false;
-        }
-        if(e.ctrlKey && e.shiftKey && e.key === 'c' || e.key === 'C') {
-            alert("F12审查元素已被禁用！");
-            return false;
-        }
-        if(e.ctrlKey && e.shiftKey && e.key === 'j' || e.key === 'J') {
-            alert("F12审查元素已被禁用！");
-            return false;
-        }
-        if(e.ctrlKey && e.key === 'u' || e.key === 'U') {
-            alert("查看源代码已被禁用！");
-            return false;
-        }
-    }
+    // document.onkeydown = function(e) {
+    //     console.log(e);
+    //     if(e.key === 'F12') {
+    //         alert("F12审查元素已被禁用！");
+    //         return false;
+    //     }
+    //     if(e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I')) {
+    //         alert("F12审查元素已被禁用！");
+    //         return false;
+    //     }
+    //     if(e.ctrlKey && e.shiftKey && e.key === 'c' || e.key === 'C') {
+    //         alert("F12审查元素已被禁用！");
+    //         return false;
+    //     }
+    //     if(e.ctrlKey && e.shiftKey && e.key === 'j' || e.key === 'J') {
+    //         alert("F12审查元素已被禁用！");
+    //         return false;
+    //     }
+    //     if(e.ctrlKey && e.key === 'u' || e.key === 'U') {
+    //         alert("查看源代码已被禁用！");
+    //         return false;
+    //     }
+    // }
 
     // 禁用右键
     document.addEventListener('contextmenu', function (event) {
