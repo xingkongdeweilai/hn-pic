@@ -637,25 +637,19 @@
     setInterval(() => sendDanmu(myDanmus[Math.floor(Math.random()*myDanmus.length)]), 200);
 
     document.onkeydown = function(e) {
-        console.log(e);
         if(e.key === 'F12') {
-            alert("F12审查元素已被禁用！");
             return false;
         }
         if(e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I')) {
-            alert("F12审查元素已被禁用！");
             return false;
         }
         if(e.ctrlKey && e.shiftKey && e.key === 'c' || e.key === 'C') {
-            alert("F12审查元素已被禁用！");
             return false;
         }
         if(e.ctrlKey && e.shiftKey && e.key === 'j' || e.key === 'J') {
-            alert("F12审查元素已被禁用！");
             return false;
         }
         if(e.ctrlKey && e.key === 'u' || e.key === 'U') {
-            alert("查看源代码已被禁用！");
             return false;
         }
     }
@@ -665,20 +659,20 @@
         event.preventDefault()
     })
 
-    const arr = ["https://dlink.host/musics/aHR0cHM6Ly9vbmVkcnYtbXkuc2hhcmVwb2ludC5jb20vOnU6L2cvcGVyc29uYWwvc3Rvcl9vbmVkcnZfb25taWNyb3NvZnRfY29tL0VTRVRkNmZHZTdKR2hVQklPcEhpQlRBQjhHNTIyWEdxaGVYZk9uVndTT19DbUE.mp3"
-        , "https://dlink.host/musics/aHR0cHM6Ly9vbmVkcnYtbXkuc2hhcmVwb2ludC5jb20vOnU6L2cvcGVyc29uYWwvc3Rvcl9vbmVkcnZfb25taWNyb3NvZnRfY29tL0VmT1A0Vy1JZldoQ21DTFg2OTVUb01vQlFuaEdQZEpJX3lURzJQaGNqb05aMVE.mp3"
-        , "https://dlink.host/musics/aHR0cHM6Ly9vbmVkcnYtbXkuc2hhcmVwb2ludC5jb20vOnU6L2cvcGVyc29uYWwvc3Rvcl9vbmVkcnZfb25taWNyb3NvZnRfY29tL0VkbWE4OWNFOHRKTGhmdHdjc1NpcTBzQkVRd3JtcG9sOVhIN1FPUU5qc1QxSXc.mp3"
+    const arr = ["http://182.92.8.7:8787/test1.mp3"
+        , "http://182.92.8.7:8787/test2.mp3"
+        , "http://182.92.8.7:8787/test3.mp3"
     ];
     const play = document.getElementById('play');
     const myAudio = new Audio();
     const playContainer = document.querySelector('.playContainer');
     window.onload = function(){
-        myAudio.src = arr[Math.floor(Math.random()*100)%arr.length];
+        myAudio.src = arr[Math.floor(Math.random()*arr.length)];
         myAudio.addEventListener('ended', playEndedHandler, false);
         myAudio.play();
         document.getElementById("audioBox").appendChild(myAudio);
         function playEndedHandler(){
-            myAudio.src = arr[Math.floor(Math.random()*100)%arr.length];
+            myAudio.src = arr[Math.floor(Math.random()*arr.length)];
             myAudio.play();
         }
         if (myAudio.paused) {
